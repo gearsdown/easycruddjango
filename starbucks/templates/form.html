@@ -1,0 +1,72 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Starbucks - Form Add New Menu</title>  
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
+</head>  
+<body>  
+    <form id="form1" method="POST" class="post-form" action="/add">  
+            {% csrf_token %}  
+        <div class="container">
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">SKU:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="sku" id="sku" required maxlength="20" value="SBUCK001"/>
+                </div>  
+            </div>  
+            <div class="form-group row">  
+                <label class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="name" id="name" required maxlength="20" value="CARAMEL JAVA CHIP"/>
+                </div>  
+            </div>  
+            <div class="form-group row">  
+                <label class="col-sm-2 col-form-label">Price:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="price" id="price" required maxlength="20" value="60000.00"/>
+                </div>  
+            </div>
+            <div class="form-group row">  
+                <label class="col-sm-2 col-form-label">Qty:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="qty" id="qty" required maxlength="20" value="2"/>
+                </div>  
+            </div>
+            <div class="form-group row">  
+                <label class="col-sm-2 col-form-label">Status:</label>
+                <div class="col-sm-4">
+                    
+                    <input type="text" name="status" id="status0" value="1" required />
+                    <!-- <label>
+                        <input type="radio" name="status" id="status0" value="1" required /> Active
+                    </label>
+                    <label>
+                        <input type="radio" name="status" id="status1" checked value="0" required /> InActive
+                    </label> -->
+                </div>  
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>  
+</html>
+
+<script type="text/javascript">
+let isEdit = "{{form.id}}";
+if(isEdit != ''){
+    document.getElementById('form1').setAttribute('action','/editPost/' + isEdit)
+    document.getElementById('sku').value = '{{form.sku}}'
+    document.getElementById('name').value = '{{form.name}}'
+    document.getElementById('price').value = '{{form.price}}'
+    document.getElementById('qty').value = '{{form.qty}}'
+    document.getElementById('status').value = '{{form.status}}'
+}
+</script>
